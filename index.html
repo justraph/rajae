@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAJAE LDR WEB - Long Distance Love</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ffd6e8;
+        }
+
+        .feature-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .countdown-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .countdown-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .countdown-input {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .countdown-input input {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .countdown-input button {
+            padding: 12px 30px;
+            border-radius: 10px;
+            border: none;
+            background: #ff6b9d;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .countdown-input button:hover {
+            background: #ff4d7d;
+        }
+
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px 30px;
+            border-radius: 15px;
+            min-width: 100px;
+        }
+
+        .time-unit .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .time-unit .label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .love-notes {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+
+        .love-notes h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .note-input {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .note-input input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .note-input button {
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: none;
+            background: #ff6b9d;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .note-input button:hover {
+            background: #ff4d7d;
+        }
+
+        .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .note-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+
+    <div class="header">
+        <h1>💕 RAJAE LDR WEB 💕</h1>
+        <p>Keeping Love Alive Across the Miles</p>
+    </div>
+
+    <div class="container">
+        <div class="features">
+            <div class="feature-card">
+                <h3>🌍 Distance Doesn't Matter</h3>
+                <p>Your love transcends borders and time zones. Stay connected no matter where you are in the world.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💌 Share Your Love</h3>
+                <p>Send sweet messages and reminders of your affection. Every word brings you closer together.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⏰ Count Every Moment</h3>
+                <p>Track the time until your next meeting and celebrate every second you've been together.</p>
+            </div>
+        </div>
+
+        <div class="countdown-section">
+            <h2>Days Until We Meet 💝</h2>
+            <div class="countdown-input">
+                <input type="date" id="meetDate" />
+                <button onclick="startCountdown()">Set Date</button>
+            </div>
+            <div class="countdown-display" id="countdown">
+                <div class="time-unit">
+                    <span class="number" id="days">0</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number" id="hours">0</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number" id="minutes">0</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number" id="seconds">0</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="love-notes">
+            <h2>Love Notes 💖</h2>
+            <div class="note-input">
+                <input type="text" id="noteInput" placeholder="Write a sweet message..." />
+                <button onclick="addNote()">Send Love</button>
+            </div>
+            <div class="notes-list" id="notesList"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 RAJAE LDR WEB | Distance makes the heart grow fonder 💕</p>
+    </div>
+
+    <script>
+        // Floating hearts background
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Countdown timer
+        let countdownInterval;
+        function startCountdown() {
+            const dateInput = document.getElementById('meetDate').value;
+            if (!dateInput) {
+                alert('Please select a date!');
+                return;
+            }
+
+            const targetDate = new Date(dateInput).getTime();
+            
+            if (countdownInterval) clearInterval(countdownInterval);
+            
+            countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').innerHTML = '<h3>The day is here! 🎉💕</h3>';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }, 1000);
+        }
+
+        // Love notes
+        let notes = [];
+        function addNote() {
+            const input = document.getElementById('noteInput');
+            const noteText = input.value.trim();
+            
+            if (!noteText) return;
+
+            notes.unshift({
+                text: noteText,
+                date: new Date().toLocaleString()
+            });
+
+            input.value = '';
+            displayNotes();
+        }
+
+        function displayNotes() {
+            const notesList = document.getElementById('notesList');
+            notesList.innerHTML = notes.map(note => `
+                <div class="note-item">
+                    <p style="font-size: 1.1em; margin-bottom: 10px;">${note.text}</p>
+                    <p style="font-size: 0.85em; opacity: 0.7;">${note.date}</p>
+                </div>
+            `).join('');
+        }
+
+        // Enter key support for inputs
+        document.getElementById('noteInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addNote();
+        });
+
+        // Initialize
+        createHearts();
+    </script>
+</body>
+</html>
